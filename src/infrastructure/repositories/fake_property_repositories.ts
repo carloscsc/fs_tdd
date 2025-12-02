@@ -1,6 +1,7 @@
+import type { PropertyRepository } from "../../domain/repositories/user_repository";
 import { Property } from "../../entities/property";
 
-export class FakePropertyRepository {
+export class FakePropertyRepository implements PropertyRepository {
 	private properties: Property[] = [
 		new Property("1", "Property 1", "First Property", 3, 200),
 		new Property("2", "Property 2", "Second Property", 4, 300),

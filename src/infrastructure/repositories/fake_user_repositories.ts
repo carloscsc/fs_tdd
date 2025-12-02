@@ -1,6 +1,7 @@
+import type { UserRepository } from "../../domain/repositories/property_repository copy";
 import { User } from "../../entities/user";
 
-export class FakeUserRepositories {
+export class FakeUserRepositories implements UserRepository {
 	private users: User[] = [new User(1, "John Doe"), new User(2, "Jane Doe")];
 
 	async findById(id: number): Promise<User | null> {
