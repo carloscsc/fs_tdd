@@ -1,3 +1,4 @@
+import { DateRange } from "../../domain/value_objects/data_range";
 import { Booking } from "../../entities/booking";
 import { FakeBookingRepository } from "../../infrastructure/repositories/fake_booking_repository";
 import type { CreateBookingDTO } from "../dtos/create_booking_dto";
@@ -7,12 +8,16 @@ import { UserService } from "./user_service";
 
 jest.mock("./property_service");
 jest.mock("./user_service");
+jest.mock("../../domain/value_objects/data_range");
+
+const MockedDateRange = DateRange as jest.MockedClass<typeof DateRange>;
 
 describe("BookingService", () => {
 	let fakeBookingRepository: FakeBookingRepository;
 	let bookingService: BookingService;
 	let mockPropertyService: jest.Mocked<PropertyService>;
 	let mockUserService: jest.Mocked<UserService>;
+	let mockDateRange: jest.Mocked<DateRange>;
 
 	beforeEach(() => {
 		const mockPropertyRepository = {} as any;
@@ -49,8 +54,16 @@ describe("BookingService", () => {
 			getId: jest.fn().mockReturnValue(1),
 		} as any;
 
+		mockDateRange = {
+			getStartDate: jest.fn(),
+			getEndDate: jest.fn(),
+			getTotalNights: jest.fn().mockReturnValue(9),
+			overlaps: jest.fn().mockReturnValue(false),
+		} as any;
+
 		mockPropertyService.findPropertyById.mockResolvedValue(mockProperty);
 		mockUserService.findUserById.mockResolvedValue(mockUser);
+		MockedDateRange.mockImplementation(() => mockDateRange);
 
 		const bookingDTO: CreateBookingDTO = {
 			propertyId: "1",
