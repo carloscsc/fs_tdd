@@ -1,5 +1,5 @@
-import type { Property } from "../entities/property";
-import type { FakePropertyRepository } from "../infrastructure/repositories/fake_property_repositories";
+import type { Property } from "../../entities/property";
+import type { FakePropertyRepository } from "../../infrastructure/repositories/fake_property_repositories";
 
 export class PropertyService {
 	constructor(private readonly propertyRepository: FakePropertyRepository) {}

@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"type": "module",
 	"scripts": {
 		"test": "jest"
 	},
@@ -12,9 +13,13 @@
 	"devDependencies": {
 		"@biomejs/biome": "2.3.7",
 		"@types/jest": "^30.0.0",
+		"@types/uuid": "^10.0.0",
 		"jest": "^30.2.0",
 		"ts-jest": "^29.4.5",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.9.3"
+	},
+	"dependencies": {
+		"uuid": "^10.0.0"
 	}
 }

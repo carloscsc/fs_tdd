@@ -1,4 +1,4 @@
-import type { UserRepository } from "../../domain/repositories/property_repository copy";
+import type { UserRepository } from "../../domain/repositories/property_repository";
 import { User } from "../../entities/user";
 
 export class FakeUserRepositories implements UserRepository {
